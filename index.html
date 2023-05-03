@@ -60,7 +60,6 @@
   <link href="https://rioagungpurnomo.github.io/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="https://rioagungpurnomo.github.io/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
   <link href="https://rioagungpurnomo.github.io/assets/css/style.css" rel="stylesheet">
-  <script src="https://rioagungpurnomo.github.io/assets/js/library.js"></script>
 </head>
 
 <body class="overflow-x-hidden user-select-none">
@@ -87,9 +86,9 @@
       <p>I'm <span class="typed" data-typed-items="Designer, Developer, Freelancer, Photographer, Programmer, UI/UX Design"></span>
       </p>
       <div class="social-links">
-        <a href="#" target="_blank" class="github"><i class="bx bxl-github"></i></a>
-        <a href="#" target="_blank" class="facebook"><i class="bx bxl-facebook"></i></a>
-        <a href="#" target="_blank" class="instagram"><i class="bx bxl-instagram"></i></a>
+        <a href="https://github.com/rioagungpurnomo" target="_blank" class="github"><i class="bx bxl-github"></i></a>
+        <a href="https://facebook.com/riodev04" target="_blank" class="facebook"><i class="bx bxl-facebook"></i></a>
+        <a href="https://instagram.com/rioputri205" target="_blank" class="instagram"><i class="bx bxl-instagram"></i></a>
       </div>
     </div>
   </section>
@@ -123,7 +122,22 @@
                 <ul>
                   <li><i class="bi bi-chevron-right"></i> <strong>Age:</strong> <span>
                       <script>
-                        document.write(rap.age());
+                        var now = new Date();
+  var yearNow = now.getFullYear();
+  var monthNow = now.getMonth() + 1;
+  var dateNow = now.getDate();
+  var differenceYear = yearNow - 2004;
+  
+  if (monthNow < 3) {
+    differenceYear--;
+  } else if (monthNow == 3) {
+    if (dateNow < 26) {
+      differenceYear--;
+    }
+  }
+  
+  output = differenceYear + ' years old';
+                        document.write(output);
                       </script>
                     </span></li>
                   <li><i class="bi bi-chevron-right"></i> <strong>Degree:</strong> <span>Junior</span></li>
@@ -225,7 +239,34 @@
 
         <div class="row">
           <script>
-            document.write(rap.github());
+            const repoNames = [
+      'database',
+      'rioagungpurnomo.github.io'
+      ];
+    const apiUrl = 'https://api.github.com/users/rioagungpurnomo/repos';
+
+  fetch(apiUrl)
+    .then((response) => response.json())
+    .then((data) => {
+      const filteredData = data.filter((repo) => !repoNames.includes(repo.name));
+    const repositoryHtmlArray = [];
+
+      filteredData.forEach((repository) => {
+        document.write(`
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+            <div class="icon-box iconbox-blue">
+              <h4><a href="${repository.html_url}" target="_blank">${repository.name}</a></h4>
+              <p>${repository.description}</p>
+              <span><i class="bx bx-code"></i> ${repository.language}&nbsp;&nbsp;</span> <span><i class="bx bx-star"></i> ${repository.stargazers_count}</span>
+            </div>
+          </div>
+        `);
+        });
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+  }
           </script>
       </div>
       </div>
@@ -285,7 +326,7 @@
     <div class="container">
       <div class="social-links">
         <a href="https://github.com/rioagungpurnomo" target="_blank" class="github"><i class="bx bxl-github"></i></a>
-        <a href="https://facebook.com/rioagungpurnomo" target="_blank" class="facebook"><i class="bx bxl-facebook"></i></a>
+        <a href="https://facebook.com/riodev04" target="_blank" class="facebook"><i class="bx bxl-facebook"></i></a>
         <a href="https://instagram.com/rioputri205" target="_blank" class="instagram"><i class="bx bxl-instagram"></i></a>
       </div>
       <div class="copyright">
