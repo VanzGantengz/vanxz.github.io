@@ -23,7 +23,7 @@ var rap = {
           </div>
         `;
         });
-        console.error(repositoryHtml);
+        console.log(repositoryHtml);
     })
     .catch((error) => {
       console.error(error);
