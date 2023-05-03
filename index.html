@@ -224,7 +224,9 @@
         </div>
 
         <div class="row">
-          <script>document.write(rap.github());</script>
+          <script>rap.github().forEach((repository) => {
+              return repository;
+            }</script>
       </div>
       </div>
     </section>
