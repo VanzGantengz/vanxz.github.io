@@ -22,7 +22,7 @@ var rap = {
             </div>
           </div>
         `;
-        document.body.insertAdjacentHTML('beforeend', repositoryHtml);
+        document.write(repositoryHtml);
       });
     })
     .catch((error) => {
@@ -46,6 +46,6 @@ var rap = {
   
   var output = differenceYear + ' years old';
 
-  document.body.insertAdjacentHTML('beforeend', output);
+  document.write(output);
   }
 };
