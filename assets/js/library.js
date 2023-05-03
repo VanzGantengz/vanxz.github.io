@@ -10,6 +10,7 @@ var rap = {
     .then((response) => response.json())
     .then((data) => {
       const filteredData = data.filter((repo) => !repoNames.includes(repo.name));
+    const repositoryHtmlArray = [];
 
       filteredData.forEach((repository) => {
         const repositoryHtml = `
@@ -21,8 +22,9 @@ var rap = {
             </div>
           </div>
         `;
-        return repositoryHtml;
-      });
+        repositoryHtmlArray.push(repositoryHtml);
+        });
+        return repositoryHtmlArray;
     })
     .catch((error) => {
       console.error(error);
