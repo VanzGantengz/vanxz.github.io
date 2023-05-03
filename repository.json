@@ -1,0 +1,26 @@
+[
+    {
+        "name":"JSMailer",
+        "description":"The classic email sending library for JavaScript.",
+        "language":"JavaScript",
+        "url":"https://github.com/rioagungpurnomo/jsmailer"
+    },
+    {
+        "name":"PyMailer",
+        "description":"The classic email sending library for Python.",
+        "language":"Python",
+        "url":"https://github.com/rioagungpurnomo/pymailers"
+    },
+    {
+        "name":"PyScraping",
+        "description":"PyScraping is a universal web-scraping util for Python, built with simplicity in mind.",
+        "language":"Python",
+        "url":"https://github.com/rioagungpurnomo/pyscraping"
+    },
+    {
+        "name":"DCobwebs",
+        "description":"DCobwebs (Database Cobwebs) PHP framework to make it easier to process data and very simple NoSQL.",
+        "language":"PHP",
+        "url":"https://github.com/rioagungpurnomo/dcobwebs"
+    }
+]
