@@ -22,7 +22,7 @@ var rap = {
             </div>
           </div>
         `;
-        document.write(repositoryHtml);
+        return repositoryHtml;
       });
     })
     .catch((error) => {
@@ -44,8 +44,6 @@ var rap = {
     }
   }
   
-  var output = differenceYear + ' years old';
-
-  document.write(output);
+  return differenceYear + ' years old';
   }
 };
