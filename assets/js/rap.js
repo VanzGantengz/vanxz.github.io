@@ -1,7 +1,7 @@
 var rap = {
   project: function () {
     const xhr = new XMLHttpRequest();
-    xhr.open("GET", "../../project.json");
+    xhr.open("GET", "https://rioagungpurnomo.github.io/project.json");
     xhr.onload = function () {
       if (xhr.status === 200) {
         const dataObj = JSON.parse(xhr.responseText);
