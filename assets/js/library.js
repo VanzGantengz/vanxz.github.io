@@ -1,11 +1,10 @@
 var rap = {
   github: function(){
-    const username = 'rioagungpurnomo';
     const repoNames = [
       'database',
       'rioagungpurnomo.github.io'
       ];
-    const apiUrl = `https://api.github.com/users/${username}/repos`;
+    const apiUrl = 'https://api.github.com/users/rioagungpurnomo/repos';
 
   fetch(apiUrl)
     .then((response) => response.json())
