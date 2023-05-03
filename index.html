@@ -69,6 +69,38 @@
   <link href="https://rioagungpurnomo.github.io/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="https://rioagungpurnomo.github.io/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
   <link href="https://rioagungpurnomo.github.io/assets/css/style.css" rel="stylesheet">
+  <script>
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', 'project.json');
+    xhr.onload = function () {
+      if (xhr.status === 200) {
+        const dataObj = JSON.parse(xhr.responseText);
+
+        if (dataObj) {
+          const project = document.querySelector('#list-project');
+
+          dataObj.forEach((repository) => {
+            const html = `
+  <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+    <div class="icon-box iconbox-blue">
+      <h4><a href="${repository.url}" target="_blank">${repository.name}</a></h4>
+      <p>${repository.description}</p>
+      <span><i class="bx bx-code"></i> ${repository.language}</span>
+    </div>
+  </div>
+`;
+            project.innerHTML += html;
+          });
+        } else {
+          console.log(null);
+        }
+      } else {
+        console.log(null);
+      }
+    };
+
+    xhr.send();
+  </script>
 </head>
 
 <body class="overflow-x-hidden user-select-none">
@@ -252,30 +284,7 @@
           <p>A project I created to create extraordinary things.</p>
         </div>
 
-        <div class="row">
-          <script>
-            const xhr = new XMLHttpRequest();
-            xhr.open('GET', 'repository.json');
-            xhr.onload = function () {
-              if (xhr.status === 200) {
-                const dataObj = JSON.parse(xhr.responseText);
-
-                dataObj.forEach((repository) => {
-                  document.write(`
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
-            <div class="icon-box iconbox-blue">
-              <h4><a href="${repository.url}" target="_blank">${repository.name}</a></h4>
-              <p>${repository.description}</p>
-              <span><i class="bx bx-code"></i> ${repository.language}</span>
-            </div>
-          </div>
-        `);
-                });
-              } else {
-                console.log('Gagal memuat data');
-              }
-            };
-          </script>
+        <div class="row" id="list-project">
         </div>
       </div>
     </section>
