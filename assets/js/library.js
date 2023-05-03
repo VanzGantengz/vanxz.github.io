@@ -22,9 +22,8 @@ var rap = {
             </div>
           </div>
         `;
-        repositoryHtmlArray.push(repositoryHtml);
         });
-        return repositoryHtmlArray;
+        return repositoryHtml;
     })
     .catch((error) => {
       console.error(error);
