@@ -69,6 +69,8 @@
   <link href="https://rioagungpurnomo.github.io/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="https://rioagungpurnomo.github.io/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
   <link href="https://rioagungpurnomo.github.io/assets/css/style.css" rel="stylesheet">
+  <script src="assets/vendor/sweetalert2/dist/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="assets/vendor/sweetalert2/dist/sweetalert2.min.css">
   <script href="https://rioagungpurnomo.github.io/assets/js/rap.js"></script>
   <script>
     const xhr = new XMLHttpRequest();
@@ -317,22 +319,22 @@
           </div>
 
           <div class="col-lg-8 mt-5 mt-lg-0">
-            <form action="" method="POST">
+            <form id="contact-form">
               <div class="row">
                 <div class="col-md-6 form-group">
-                  <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+                  <input type="text" name="name" class="form-control" id="name" placeholder="Enter Your Name" required>
                 </div>
                 <div class="col-md-6 form-group mt-3 mt-md-0">
-                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+                  <input type="email" class="form-control" name="email" id="email" placeholder="Enter Your Email" required>
                 </div>
               </div>
               <div class="form-group mt-3">
-                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
+                <input type="text" class="form-control" name="subject" id="subject" placeholder="Enter Subject" required>
               </div>
               <div class="form-group mt-3">
-                <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
+                <textarea class="form-control" name="message" id="message" rows="5" placeholder="Enter Message" required></textarea>
               </div>
-              <div class="text-center"><button id="send" type="button"
+              <div class="text-center"><button type="submit"
                   class="btn btn-primary mt-3 rounded-pill bg-gradient">Send Message</button></div>
             </form>
           </div>
@@ -370,13 +372,55 @@
   <script src="https://rioagungpurnomo.github.io/assets/vendor/waypoints/noframework.waypoints.js"></script>
   <script src="https://rioagungpurnomo.github.io/assets/vendor/php-email-form/validate.js"></script>
   <script src="https://rioagungpurnomo.github.io/assets/js/main.js"></script>
-  <script>
-    const submitButton = document.querySelector('button[type="submit"]');
-    submitButton.addEventListener("click", function () {
-      submitButton.classList.add('disabled'), submitButton.innerHTML =
-        '<span class="spinner-border me-2 spinner-border-sm" role="status" aria-hidden="true"></span>Processing...'
-    });
-  </script>
-</body>
+  <script src="https://jsmailer.pages.dev/jsmailer.js"></script>
+<script>
+  document.getElementById('contact-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    
+    var name = document.getElementById('name');
+    var email = document.getElementById('email');
+    var subject = document.getElementById('subject');
+    var message = document.getElementById('message');
 
+    if(name.value === '' || email.value === '' || subject.value === '' || message.value === '') {
+      Swal.fire({
+        position: "center",
+        icon: "error",
+        html: "<h4>Please complete all inputs before sending a message.</h4>",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      submitButton.classList.remove('disabled');
+      submitButton.innerHTML = 'Send Message';
+    } else {
+      const messageSend = `
+      <p>Email : <b>${email.value}</b></p>
+      <p>Name : <b>${name.value}</b></p>
+      <p>Subject : <b>${subject.value}</b></p>
+      <br>
+      <p>${message.value}</p>
+      `;
+      
+      jsmailer.emailjs({
+        "public_key":"XHA_vBD4Mo7L-MDOP",
+        "service_id": "service_rcxrsyn",
+        "template_id": "template_898mdg6",
+        "name": "Mail Notification",
+        "to": "rioagungpurnomo.ak@gmail.com",
+        "subject": subject.value,
+        "message": messageSend,
+        "display": false
+      });
+      
+      Swal.fire({
+          position: "center",
+          icon: "success",
+          html: "<h4>Message successfully sent.</h4>",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+    }
+  });
+</script>
+</body>
 </html>
