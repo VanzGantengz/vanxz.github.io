@@ -69,37 +69,9 @@
   <link href="https://rioagungpurnomo.github.io/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="https://rioagungpurnomo.github.io/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
   <link href="https://rioagungpurnomo.github.io/assets/css/style.css" rel="stylesheet">
+  <script href="https://rioagungpurnomo.github.io/assets/js/rap.js"></script>
   <script>
-    const xhr = new XMLHttpRequest();
-    xhr.open('GET', 'project.json');
-    xhr.onload = function () {
-      if (xhr.status === 200) {
-        const dataObj = JSON.parse(xhr.responseText);
-
-        if (dataObj) {
-          const project = document.querySelector('#list-project');
-
-          dataObj.forEach((repository) => {
-            const html = `
-  <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
-    <div class="icon-box iconbox-blue">
-      <h4><a href="${repository.url}" target="_blank">${repository.name}</a></h4>
-      <p>${repository.description}</p>
-      <span><i class="bx bx-code"></i> ${repository.language}</span>
-    </div>
-  </div>
-`;
-            project.innerHTML += html;
-          });
-        } else {
-          console.log(null);
-        }
-      } else {
-        console.log(null);
-      }
-    };
-
-    xhr.send();
+    rap.project();
   </script>
 </head>
 
@@ -168,22 +140,7 @@
                 <ul>
                   <li><i class="bi bi-chevron-right"></i> <strong>Age:</strong> <span>
                       <script>
-                        var now = new Date();
-                        var yearNow = now.getFullYear();
-                        var monthNow = now.getMonth() + 1;
-                        var dateNow = now.getDate();
-                        var differenceYear = yearNow - 2004;
-
-                        if (monthNow < 3) {
-                          differenceYear--;
-                        } else if (monthNow == 3) {
-                          if (dateNow < 26) {
-                            differenceYear--;
-                          }
-                        }
-
-                        output = differenceYear + ' years old';
-                        document.write(output);
+                        document.write(rap.age());
                       </script>
                     </span></li>
                   <li><i class="bi bi-chevron-right"></i> <strong>Degree:</strong> <span>Junior</span></li>
